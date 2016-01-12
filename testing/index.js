@@ -33,7 +33,7 @@ exports.getBodyParts = function (conf) {
 
       new RoboHydraHeadProxy({
         mountPath: '/',
-        proxyTo: 'http://dev.gefs-online.com',
+        proxyTo: 'http://www.gefs-online.com',
         setHostHeader: true
       })
     ]
