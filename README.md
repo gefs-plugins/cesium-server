@@ -1,5 +1,17 @@
 # cesium-server
-Local aircraft testing on Cesium GEFS
+Local aircraft testing on Cesium GEFS    
+----
+This allows you to run a server for GEFS from your local aircraft files.
+
+Before running this, you'll need to install [Node.js](http://nodejs.org).
+
+After doing that, open a terminal/command prompt in this directory:
+
+ - `npm install`
+ - `npm run gefs`
+
+You should now have a working aircraft server for GEFS!
+Place the files for your aircraft in the folder `testing/aircraft`.
 
 > Original Author: Karl Cheng
 
