@@ -2,7 +2,7 @@
 , "author": "Karl Cheng <qantas94heavy@gmail.com>"
 , "dependencies": { "robohydra": "^0.5.2" }
 , "scripts":
-  { "gefs": "robohydra -I ./ -n -P testing -q"
+  { "gefs": "robohydra -I ./ -n -P no-caching,testing -q"
   }
 , "private": true
 }

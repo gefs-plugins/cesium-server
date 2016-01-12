@@ -1,5 +1,5 @@
-ges.communityAircraftMap = {};
-ges.PRODUCTION = false;
+gefs.communityAircraftMap = {};
+gefs.PRODUCTION = false;
 
 $(function () {
   $('<li>').append(
@@ -7,7 +7,7 @@ $(function () {
       .text('My Custom Aircraft')
       .prop('href', '#')
       .mouseup(function () {
-        ges.aircraft.change('aircraft');
+        gefs.aircraft.change('aircraft');
       })
   ).appendTo($('.dropdown-menu').eq(2).empty());
 });
@@ -21,7 +21,7 @@ $('<div>')
     	.addClass('btn btn-warning')
 	    .text('Debug')
 	    .click(function() {
-			ges.debug.toggleDebug();
+			gefs.debug.toggleDebug();
 		})
 	).insertAfter($('.setup-section').eq(getIndex()).children('.btn-group').first());
 });
@@ -41,7 +41,7 @@ Aircraft.prototype.load = function (aircraftName, coordinates, bJustReload) {
 
 // disable multiplayer so anything broken won't affect the multiplayer server
 
-ges.multiplayerHost = '0.0.0.0';
+gefs.multiplayerHost = '0.0.0.0';
 multiplayer.stopUpdates();
 multiplayer.on = false;
-$('input[gespref="ges.preferences.multiplayer"]').prop('disabled', true);
+$('input[gespref="gefs.preferences.multiplayer"]').prop('disabled', true);
