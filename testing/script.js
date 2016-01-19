@@ -26,6 +26,33 @@ $('<div>')
 	).insertAfter($('.setup-section').eq(getIndex()).children('.btn-group').first());
 });
 
+$(function () {
+  var JSONMode = false;
+
+  function switchMode () {
+    if (JSONMode) {
+      gefs.communityAircraftMap = {"aircraft": "models/aircrafts/aircraft"};
+    } else {
+      gefs.communityAircraftMap = {};
+    }
+  }
+  
+  $('.gefs-auth form').remove();
+
+  var switchButton = $('<span class="add-on">[Javascript Mode]</span>').appendTo('.gefs-auth');
+  switchButton.click(function () {
+    if (JSONMode) {
+      switchButton.text('[Javascript Mode]');
+      JSONMode = false;
+    } else {
+      switchButton.text('[JSON Mode]');
+      JSONMode = true;
+    }
+    
+    switchMode();
+  });
+});
+
 // Finds the appropriate element to place the debug button.
 function getIndex() {
 	for (var i = 0; i < $('.setup-section').length; i++)
