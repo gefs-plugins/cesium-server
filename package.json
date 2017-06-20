@@ -1,8 +1,8 @@
 { "name": "custom-aircraft-testing"
 , "author": "Karl Cheng <qantas94heavy@gmail.com>"
-, "dependencies": { "robohydra": "^0.5.2" }
+, "dependencies": { "robohydra": "^0.6.3" }
 , "scripts":
-  { "gefs": "robohydra -I ./ -n -P no-caching,testing -q"
+  { "geofs": "robohydra -I ./ -n -P testing -q"
   }
 , "private": true
 }

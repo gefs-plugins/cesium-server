@@ -20,12 +20,17 @@ exports.getBodyParts = function (conf) {
   return {
     heads: [
       new RoboHydraHeadFilesystem({
-        mountPath: '/models/aircrafts/aircraft',
+        mountPath: '/models/aircraft/aircraft',
         documentRoot: path.join(__dirname, 'aircraft')
       }),
-      
+
+      new RoboHydraHeadFilesystem({
+          mountPath: 'backend/aircraft/repository/aircraft',
+          documentRoot: path.join(__dirname, 'aircraft')
+      }),
+
       new RoboHydraHeadFilter({
-        path: '/gefs.php*',
+        path: '/geofs.php*',
         filter: function (buffer) {
           return buffer.toString().replace('</head>', script);
         }
@@ -33,12 +38,12 @@ exports.getBodyParts = function (conf) {
 
       new RoboHydraHeadProxy({
         mountPath: '/',
-        proxyTo: 'http://www.gefs-online.com',
+        proxyTo: 'http://www.geo-fs.com/',
         setHostHeader: true
       })
     ]
   };
 };
 
-console.log('Please go to http://localhost:3000/gefs.php to start Cesium-GEFS.');
+console.log('Please go to http://localhost:3000/geofs.php to start Geo-FS.');
 console.log('To exit, press Ctrl+C or close this window.');

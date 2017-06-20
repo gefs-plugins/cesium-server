@@ -1,2 +1,6 @@
-testing/aircraft*
 node_modules
+*.log
+.DS_Store
+testing/*
+!testing/script.js
+!testing/index.js
