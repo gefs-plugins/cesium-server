@@ -9,24 +9,14 @@ var fs = require('fs');
 var path = require('path');
 var util = require('util');
 
-try {
-  var file = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf-8');
-  var script = util.format('<script>%s</script></head>', file);
-} catch (e) {
-  throw new Error('script.js was not found');
-}
+var script = util.format('<script src="%s"></script></head>', '/local/script.js');
 
 exports.getBodyParts = function (conf) {
   return {
     heads: [
       new RoboHydraHeadFilesystem({
-        mountPath: '/models/aircraft/aircraft',
-        documentRoot: path.join(__dirname, 'aircraft')
-      }),
-
-      new RoboHydraHeadFilesystem({
-          mountPath: 'backend/aircraft/repository/aircraft',
-          documentRoot: path.join(__dirname, 'aircraft')
+        mountPath: '/local',
+        documentRoot: path.join(__dirname, './')
       }),
 
       new RoboHydraHeadFilter({
