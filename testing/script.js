@@ -54,7 +54,7 @@
 
     // Redefines load functions
     geofs.aircraft.Aircraft.prototype.load = function (id, coordinates, bJustReload) {
-        $.ajax('/local/aircraft/aircraft.json', {
+        $.ajax('/local/aircraft/aircraft.json?killcache=' + Date.now(), {
             dataType: 'text',
 
             success: function (data, error, a) {
