@@ -1,30 +1,20 @@
-(function (init) {
-    // jQuery must be defined
-	var timer = setInterval(function() {
-        if (window.geofs && geofs.aircraft && geofs.aircraft.instance && geofs.aircraft.instance.object3d) {
-            clearInterval(timer);
-            init();
-        }
-    }, 16);
-})(function () {
+/* jshint varstmt:false, node:false, browser:true */
+/* globals geofs, multiplayer, componentHandler */
 
-    // Default lists
-    var aircraftRecord = {
-        id: 'aircraft',
-        name: 'My Aircraft',
-        fullPath: 'local/aircraft/',
-        isPremium: false,
-        isCommunity: false
-    };
+window.addEventListener('deferredload', function () {
+	'use strict';
 
     geofs.PRODUCTION = false;
 
     // Adds aircraft button
     $('ul.geofs-aircraft-list li').remove();
-    $('ul.geofs-aircraft-list').append($('<li>')
-        .attr('data-aircraft', 'aircraft')
-        .text('My Custom Aircraft')
-    );
+
+	for (var aircraft in geofs.testAircraftList) {
+	    $('ul.geofs-aircraft-list').append($('<li>')
+	        .attr('data-aircraft', aircraft)
+	        .text(geofs.testAircraftList[aircraft].name)
+	    );
+	}
 
     // Adds the debug button
     $('.geofs-editor-role').attr('style', 'display: inline-block !important');
@@ -33,8 +23,9 @@
     var JSONMode = false;
 
     function switchMode() {
-        if (JSONMode) aircraftRecord.isCommunity = true;
-        else aircraftRecord.isCommunity = false;
+        for (var aircraft in geofs.testAircraftList) {
+			geofs.testAircraftList[aircraft].isCommunity = JSONMode;
+		}
     }
 
     $('.geofs-auth form').remove();
@@ -54,11 +45,13 @@
 
     // Redefines load functions
     geofs.aircraft.Aircraft.prototype.load = function (id, coordinates, bJustReload) {
-        $.ajax('/local/aircraft/aircraft.json?killcache=' + Date.now(), {
+		if (id >= Object.keys(geofs.testAircraftList).length) id = 0;
+        $.ajax(geofs.testAircraftList[id].fullPath + 'aircraft.json?killcache=' + Date.now(), {
             dataType: 'text',
 
-            success: function (data, error, a) {
+            success: function (data, error, a) { // jshint ignore:line
                 if (error !== 'error') {
+					var aircraftRecord = geofs.testAircraftList[id];
                     aircraftRecord.definition = btoa(data);
                     data = geofs.aircraft.instance.parseRecord(JSON.stringify(aircraftRecord));
                     if (data) {
@@ -82,7 +75,6 @@
     };
 
     // Disables multiplayer so anything broken won't affect the multiplayer server
-    geofs.multiplayerHost = '0.0.0.0';
     multiplayer.stopUpdates();
     multiplayer.on = false;
     $('input#enableMultiplayer').removeAttr('update').prop('disabled', true);

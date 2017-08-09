@@ -1,0 +1,18 @@
+{
+    "esnext": 6,
+	"node": true,
+	"laxcomma": true,
+	"laxbreak": true,
+	"eqeqeq": true,
+	"eqnull": false,
+	"strict": true,
+	"curly": false,
+	"expr": false,
+	"devel": true,
+	"debug": true,
+	"varstmt": true,
+	"unused": true,
+	"undef": true,
+    "loopfunc": true,
+    "jquery": true
+}

@@ -1,17 +1,17 @@
 # cesium-server
-Local aircraft testing on Cesium GEFS    
+Local aircraft testing on GeoFS  
 ----
-This allows you to run a server for GEFS from your local aircraft files.
+This allows you to run a server for GeoFS from your local aircraft files.
 
 Before running this, you'll need to install [Node.js](http://nodejs.org).
 
 After doing that, open a terminal/command prompt in this directory:
 
  - `npm install`
- - `npm run gefs`
+ - `npm run geofs`
 
-You should now have a working aircraft server for GEFS!
-Place the files for your aircraft in the folder `testing/aircraft`.
+You should now have a working aircraft server for GeoFS!
+Create as many folders as you like in `testing/` and put aircraft files in those folders
 
 > Original Author: Karl Cheng
 
@@ -19,17 +19,17 @@ LICENSE
 -------
 
 > Copyright (c) 2015 Karl Cheng
-> 
+>
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
 > in the Software without restriction, including without limitation the rights
 > to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 > copies of the Software, and to permit persons to whom the Software is
 > furnished to do so, subject to the following conditions:
-> 
+>
 > The above copyright notice and this permission notice shall be included in
 > all copies or substantial portions of the Software.
-> 
+>
 > THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 > IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 > FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
