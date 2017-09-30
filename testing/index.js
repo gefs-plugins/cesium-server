@@ -10,9 +10,9 @@ const formatPath = dir => path.join(__dirname, dir);
 
 let folders = [], aircraftList = {};
 
-fs.readdirSync(formatPath('./')).forEach(data => {
+for (let data of fs.readdirSync(formatPath('./'))) {
     if (fs.lstatSync(formatPath(data)).isDirectory()) folders.push(data);
-});
+}
 
 for (let i = 0; i < folders.length; i++) {
     let record = {
@@ -39,7 +39,9 @@ exports.getBodyParts = function () {
 
 			new RoboHydraHeadFilter({
 				path: '/geofs.php*',
-				filter: buffer => buffer.toString().replace('</head>', script)
+				filter: buffer => buffer.toString()
+                    .replace(/geofs\.jsapiKey = '[^]*?'/, 'geofs.jsapiKey = "AIzaSyBlCxVOtJO6rKOmWnIhHSWx2EHzU_7hakQ"')
+                    .replace('</head>', script)
 			}),
 
 			new RoboHydraHeadProxy({
