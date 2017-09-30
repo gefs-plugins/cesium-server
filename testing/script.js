@@ -6,6 +6,10 @@ window.addEventListener('deferredload', function () {
 
     geofs.PRODUCTION = false;
 
+	// Fixes google maps API problem
+	window.google = {};
+	$('<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBlCxVOtJO6rKOmWnIhHSWx2EHzU_7hakQ"></script>').appendTo('head');
+
     // Adds aircraft button
     $('ul.geofs-aircraft-list li').remove();
 
@@ -45,7 +49,7 @@ window.addEventListener('deferredload', function () {
 
     // Redefines load functions
     geofs.aircraft.Aircraft.prototype.load = function (id, coordinates, bJustReload) {
-		if (id >= Object.keys(geofs.testAircraftList).length) id = 0;
+		if (+id >= Object.keys(geofs.testAircraftList).length) id = 0;
         $.ajax(geofs.testAircraftList[id].fullPath + 'aircraft.json?killcache=' + Date.now(), {
             dataType: 'text',
 
