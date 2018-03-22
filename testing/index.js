@@ -46,12 +46,12 @@ exports.getBodyParts = function () {
 
 			new RoboHydraHeadProxy({
 				mountPath: '/',
-				proxyTo: 'http://www.geo-fs.com/',
+				proxyTo: 'https://www.geo-fs.com/',
 				setHostHeader: true
 			})
 		]
 	};
 };
 
-console.log('Please go to http://localhost:3000/geofs.php to start Geo-FS.');
+console.log('Please go to https://localhost:3000/geofs.php to start Geo-FS.');
 console.log('To exit, press Ctrl+C or close this window.');
