@@ -1,10 +1,36 @@
 /* jshint varstmt:false, node:false, browser:true */
 /* globals geofs, multiplayer, componentHandler */
 
-window.addEventListener('deferredload', function () {
+/* jshint browser:true, jquery:true, varstmt: false */
+/* global geofs */
+
+(function (load) {
 	'use strict';
 
+    var timer = setInterval(function () {
+        if (!(window.geofs && geofs.canvas)) return;
+
+        clearInterval(timer);
+        load();
+
+    }, 250);
+})(function load () { // jshint strict:false
     geofs.PRODUCTION = false;
+
+	// Sets up body class
+    $('body').addClass('geofs-authenticated geofs-editor-role').removeClass('geofs-loggedout');
+
+	// Removes authentication (no spinning wheel)
+	$('.geofs-auth').remove();
+
+    // Removes ui right frames
+    $('.geofs-adsBlockedMessage').remove();
+    $('.geofs-adbanner').remove();
+
+    // Loads Imagery
+	var data;
+	$.get('/local/imagery.js?_=' + Date.now(), function (d) { data = d; });
+	if (data) $('<script src="/local/imagery.js?_=' + Date.now() + '"></script>').appendTo('head');
 
     // Adds aircraft button
     $('ul.geofs-aircraft-list li').remove();
@@ -16,9 +42,6 @@ window.addEventListener('deferredload', function () {
 	    );
 	}
 
-    // Adds the debug button
-    $('.geofs-editor-role').attr('style', 'display: inline-block !important');
-
     // Switches JSON and Javascript mode
     var JSONMode = false;
 
@@ -28,9 +51,8 @@ window.addEventListener('deferredload', function () {
 		}
     }
 
-    $('.geofs-auth form').remove();
-
-    var switchButton = $('<span class="add-on">[Javascript Mode]</span>').appendTo('.geofs-auth');
+	$('<div class="modes" style="float: right;"></div>').appendTo('.geofs-ui-top'); // container
+    var switchButton = $('<div class="modes"><span class="add-on">[Javascript Mode]</span></div>').appendTo('.modes');
     switchButton.click(function() {
         if (JSONMode) {
             switchButton.text('[Javascript Mode]');

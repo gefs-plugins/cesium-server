@@ -13,12 +13,10 @@ After doing that, open a terminal/command prompt in this directory:
 You should now have a working aircraft server for GeoFS!
 Create as many folders as you like in `testing/` and put aircraft files in those folders
 
-> Original Author: Karl Cheng
-
 LICENSE
 -------
 
-> Copyright (c) 2015 Karl Cheng
+> Copyright (c) 2015 Karl Cheng, (c) 2016-2018 Harry Xue
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
